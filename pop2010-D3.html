@@ -40,15 +40,19 @@
 <body>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script>
-		// Your JavsScript goes here
-		d3.select("body").append("h2")
-				.text("Age distribution of the world, 2010")
-		d3.select("body").append("div");
-				.attr("class", "top-label age-label")
-		d3.select("body").append("div");
-				.attr("class", "top-label");
-		d3.select("body").append("div")
-				.attr("class", "clearfix");
+		var body = d3.select("body");
+
+		body.append("h2")
+			.text("Age distribution of the world, 2010");
+
+		body.append("div")
+			.attr("class", "top-label age-label");
+
+		body.append("div")
+			.attr("class", "top-label");
+
+		body.append("div")
+			.attr("class", "clearfix");
 	</script>
 </body>
 </html>
