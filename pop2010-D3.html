@@ -247,10 +247,6 @@
 				.attr("y", 445)
 				.text("0-4");
 
-		var barGroup = svg.append("g")
-				.attr("transform", "translate(100,30) scale(43,1)")
-				.attr("class", "bar");
-
 		var axisTickGroup = svg.append("g")
 				.attr("transform", "translate(100,30)")
 				.attr("stroke", "black");
@@ -278,6 +274,30 @@
 				.attr("y1", 0)
 				.attr("x2", 323.25)
 				.attr("y2", -10);
+
+		var axisLabelGroup = svg.append("g")
+				.attr("transform", "translate(100,30")
+				.attr("class", "axis-label");
+
+		axisLabelGroup.append("text")
+				.attr("x", 0)
+				.attr("y", -15)
+				.text("0");
+
+		axisLabelGroup.append("text")
+				.attr("x", 107.75)
+				.attr("y", -15)
+				.text("2.5%");
+
+		axisLabelGroup.append("text")
+				.attr("x", 215.5)
+				.attr("y", -15)
+				.text("5.0%");
+
+		axisLabelGroup.append("text")
+				.attr("x", 323.25)
+				.attr("y", -15)
+				.text("7.5%");
 	</script>
 </body>
 </html>
