@@ -246,6 +246,38 @@
 				.attr("x", 90)
 				.attr("y", 445)
 				.text("0-4");
+
+		var barGroup = svg.append("g")
+				.attr("transform", "translate(100,30) scale(43,1)")
+				.attr("class", "bar");
+
+		var axisTickGroup = svg.append("g")
+				.attr("transform", "translate(100,30)")
+				.attr("stroke", "black");
+
+		axisTickGroup.append("line")
+				.attr("x1", 0)
+				.attr("y1", 0)
+				.attr("x2", 0)
+				.attr("y2", -10);
+
+		axisTickGroup.append("line")
+				.attr("x1", 107.75)
+				.attr("y1", 0)
+				.attr("x2", 107.75)
+				.attr("y2", -10);
+
+		axisTickGroup.append("line")
+				.attr("x1", 215.5)
+				.attr("y1", 0)
+				.attr("x2", 215.5)
+				.attr("y2", -10);
+
+		axisTickGroup.append("line")
+				.attr("x1", 323.25)
+				.attr("y1", 0)
+				.attr("x2", 323.25)
+				.attr("y2", -10);
 	</script>
 </body>
 </html>
