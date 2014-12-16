@@ -59,7 +59,8 @@
 		var svg = body.append("svg");
 
 		var barHeight = 20,
-			barSpacing = 25;
+			barGap = 5,
+			barSpacing = barHeight + barGap;
 		var barGroup = svg.append("g")
 				.attr("transform", "translate(100,30) scale(43,1)")
 				.attr("class", "bar");
