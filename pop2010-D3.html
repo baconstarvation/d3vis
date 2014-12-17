@@ -170,6 +170,12 @@
 		var barLabelGroup = svg.append("g")
 				.attr("class", "bar-label")
 
+
+		barLabelGroup.append("text")
+				.attr("x", 90)
+				.attr("y", 45)
+				.text("80+");
+
 		barLabelGroup.append("text")
 				.attr("x", 90)
 				.attr("y", 70)
