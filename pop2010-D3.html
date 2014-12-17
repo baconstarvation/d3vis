@@ -72,111 +72,16 @@
 				.attr("transform", "translate(100,30) scale(" + scaleFactor + ",1)")
 				.attr("class", "bar");
 
-		barGroup.append("rect")
+		for (var i = 0; i < popData.length; i++) {
+			barGroup.append("rect")
 				.attr("x", 0)
-				.attr("y", 0)
+				.attr("y", i * barSpacing)
 				.attr("height", barHeight)
-				.attr("width", popData[0]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[1]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 2 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[2]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 3 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[3]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 4 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[4]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 5 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[5]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 6 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[6]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 7 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[7]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 8 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[8]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 9 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[9]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 10 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[10]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 11 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[11]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 12 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[12]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 13 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[13]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 14 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[14]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 15 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[15]);
-
-		barGroup.append("rect")
-				.attr("x", 0)
-				.attr("y", 16 * barSpacing)
-				.attr("height", barHeight)
-				.attr("width", popData[16]);
+				.attr("width", popData[i]);
+		}
 
 		var barLabelGroup = svg.append("g")
 				.attr("class", "bar-label")
-
 
 		barLabelGroup.append("text")
 				.attr("x", 90)
