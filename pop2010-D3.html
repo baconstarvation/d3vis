@@ -40,6 +40,25 @@
 <body>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script>
+		var popData = [1.6, 1.5, 2.1, 2.6, 3.4, 4.5, 5.1, 6.0, 6.6, 7.1, 7.3, 8.1,
+					   8.9, 8.8, 8.6, 8.8, 9.3],
+			axisData = [0, 2.5, 5.0, 7.5],
+			barLabels = ["80 and up", "75-79", "70-74", "65-69", "60-64", "55-59",
+						 "50-54", "45-49", "40-44", "35-39", "30-34", "25-29",
+						 "20-24", "15-19", "10-14", "5-9", "0-4"];
+
+		var width = 400,
+			leftMargin = 100,
+			topMargin = 30,
+			barHeight = 20,
+			barGap = 5,
+			tickGap = 5,
+			tickHeight = 10,
+			scaleFactor = width / popData[16],
+			barSpacing = barHeight + barGap,
+			translateText = "translate(" + leftMargin + "," + topMargin + ")",
+			scaleText = "scale(" + scaleFactor + ",1)";
+
 		var body = d3.select("body");
 
 		body.append("h2")
@@ -47,29 +66,21 @@
 
 		body.append("div")
 				.attr("class", "top-label age-label")
-			.text("age group");
+			.append("p")
+				.text("age group");
 
 		body.append("div")
 				.attr("class", "top-label")
-			.text("portion of the population");
+			.append("p")
+				.text("portion of the population");
 
 		body.append("div")
 				.attr("class", "clearfix");
 
 		var svg = body.append("svg");
 
-		var popData = [1.6, 1.5, 2.1, 2.6, 3.4, 4.5, 5.1, 6.0, 6.6, 7.1, 7.3, 8.1,
-					   8.9, 8.8, 8.6, 8.8, 9.3];
-
-		var width = 400,
-			scaleFactor = width / popData[16];
-
-		var barHeight = 20,
-			barGap = 5,
-			barSpacing = barHeight + barGap;
-
 		var barGroup = svg.append("g")
-				.attr("transform", "translate(100,30) scale(" + scaleFactor + ",1)")
+				.attr("transform", translateText + " " + scaleText)
 				.attr("class", "bar");
 
 		for (var i = 0; i < popData.length; i++) {
@@ -81,144 +92,37 @@
 		}
 
 		var barLabelGroup = svg.append("g")
+				.attr("transform", translateText)
 				.attr("class", "bar-label")
 
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 45)
-				.text("80+");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 70)
-				.text("75-79");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 95)
-				.text("70-74");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 120)
-				.text("65-69");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 145)
-				.text("60-64");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 170)
-				.text("55-59");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 195)
-				.text("50-54");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 220)
-				.text("45-49");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 245)
-				.text("40-44");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 270)
-				.text("35-39");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 295)
-				.text("30-34");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 320)
-				.text("25-29");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 345)
-				.text("20-24");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 370)
-				.text("15-19");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 395)
-				.text("10-14");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 420)
-				.text("5-9");
-
-		barLabelGroup.append("text")
-				.attr("x", 90)
-				.attr("y", 445)
-				.text("0-4");
+		for (var i = 0; i < barLabels.length; i++) {
+			barLabelGroup.append("text")
+				.attr("x", -10)
+				.attr("y", i * barSpacing + barHeight*(2/3))
+				.text(barLabels[i]);
+		};
 
 		var axisTickGroup = svg.append("g")
-				.attr("transform", "translate(100,30)")
+				.attr("transform", translateText)
 				.attr("stroke", "black");
-
-		axisTickGroup.append("line")
-				.attr("x1", 0)
-				.attr("y1", 0)
-				.attr("x2", 0)
-				.attr("y2", -10);
-
-		axisTickGroup.append("line")
-				.attr("x1", 107.75)
-				.attr("y1", 0)
-				.attr("x2", 107.75)
-				.attr("y2", -10);
-
-		axisTickGroup.append("line")
-				.attr("x1", 215.5)
-				.attr("y1", 0)
-				.attr("x2", 215.5)
-				.attr("y2", -10);
-
-		axisTickGroup.append("line")
-				.attr("x1", 323.25)
-				.attr("y1", 0)
-				.attr("x2", 323.25)
-				.attr("y2", -10);
 
 		var axisLabelGroup = svg.append("g")
 				.attr("transform", "translate(100,30")
 				.attr("class", "axis-label");
 
-		axisLabelGroup.append("text")
-				.attr("x", 0)
-				.attr("y", -15)
-				.text("0");
+		for (var i = 0; i < axisData.length; i++) {
+			axisTickGroup.append("line")
+				.attr("x1", axisData[i] * scaleFactor)
+				.attr("x2", axisData[i] * scaleFactor)
+				.attr("y1", 0)
+				.attr("y2", -tickHeight);
 
-		axisLabelGroup.append("text")
-				.attr("x", 107.75)
-				.attr("y", -15)
-				.text("2.5%");
+			axisLabelGroup.append("text")
+				.attr("x", axisData[i] * scaleFactor)
+				.attr("y", -tickHeight - tickGap)
+				.text(axisData[i] + "%");
+		};
 
-		axisLabelGroup.append("text")
-				.attr("x", 215.5)
-				.attr("y", -15)
-				.text("5.0%");
-
-		axisLabelGroup.append("text")
-				.attr("x", 323.25)
-				.attr("y", -15)
-				.text("7.5%");
 	</script>
 </body>
 </html>
