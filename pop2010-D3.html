@@ -61,11 +61,15 @@
 		var popData = [1.6, 1.5, 2.1, 2.6, 3.4, 4.5, 5.1, 6.0, 6.6, 7.1, 7.3, 8.1,
 					   8.9, 8.8, 8.6, 8.8, 9.3];
 
+		var width = 400,
+			scaleFactor = width / popData[16];
+
 		var barHeight = 20,
 			barGap = 5,
 			barSpacing = barHeight + barGap;
+
 		var barGroup = svg.append("g")
-				.attr("transform", "translate(100,30) scale(43,1)")
+				.attr("transform", "translate(100,30) scale(" + scaleFactor + ",1)")
 				.attr("class", "bar");
 
 		barGroup.append("rect")
