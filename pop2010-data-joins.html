@@ -83,12 +83,14 @@
 		var barGroup = svg.append("g")
 				.attr("transform", translateText + " " + scaleText)
 				.attr("class", "bar");
+
+		barGroup.selectAll("rect")
+				.data(popData)
+			.enter().append("rect")
+				.attr("x", 0)
+				.attr("height", barHeight)
+				.attr("width", // What goes here?)
+				.attr("y", // Or here?)
 	</script>
 </body>
 </html>
-
-
-
-
-
-
