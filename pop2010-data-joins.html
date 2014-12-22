@@ -89,8 +89,8 @@
 			.enter().append("rect")
 				.attr("x", 0)
 				.attr("height", barHeight)
-				.attr("width", // What goes here?)
-				.attr("y", // Or here?)
+				.attr("width", function(d) {return d})
+				.attr("y", function(d,i) { return i * barSpacing});
 	</script>
 </body>
 </html>
