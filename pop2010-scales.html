@@ -66,12 +66,15 @@
 			topMargin = 30,
 			barHeight = 20,
 			barGap = 5,
-			tickGap = 5,
-			tickHeight = 10,
-			scaleFactor = width / popData[16].value,
 			barSpacing = barHeight + barGap,
-			translateText = "translate(" + leftMargin + "," + topMargin + ")",
-			scaleText = "scale(" + scaleFactor + ",1)";
+			tickHeight = 10,
+			tickGap = 5,
+			translateText = "translate(" + leftMargin + "," + topMargin + ")";
+
+		var x = d3.scale.linear()
+				.domain([0, d3.max(popData, function(d)
+				{return d.value})])
+					.range([0, width]);
 
 		var body = d3.select("body");
 
@@ -94,27 +97,16 @@
 		var svg = body.append("svg");
 
 		var barGroup = svg.append("g")
-				.attr("transform", translateText + " " + scaleText)
+				.attr("transform", translateText)
 				.attr("class", "bar");
 
 		barGroup.selectAll("rect")
 				.data(popData)
 			.enter().append("rect")
 				.attr("x", 0)
-				.attr("y", function(d){ return d.position * barSpacing })
-				.attr("width", function(d) { return d.value })
+				.attr("y", function(d) { return d.position * barSpacing})
+				.attr(("width", function(d) {return x(d.value)})
 				.attr("height", barHeight);
-
-		var barLabelGroup = svg.append("g")
-				.attr("transform", translateText)
-				.attr("class", "bar-label")
-
-		barLabelGroup.selectAll("text")
-				.data(popData)
-			.enter().append("text")
-				.attr("x", -10)
-				.attr("y", function(d) { return d.position * barSpacing + barHeight*(2/3)})
-				.text(function(d) {return d.age});
 
 		var axisTickGroup = svg.append("g")
 				.attr("transform", translateText)
@@ -123,8 +115,8 @@
 		axisTickGroup.selectAll("line")
 				.data(axisData)
 			.enter().append("line")
-				.attr("x1", function(d) {return d * scaleFactor})
-				.attr("x2", function(d) {return d * scaleFactor})			
+				.attr("x1", function(d) {return x(d)})
+				.attr("x2", function(d) {return x(d)})			
 				.attr("y1", 0)
 				.attr("y2", -tickHeight);
 
@@ -135,7 +127,7 @@
 		axisLabelGroup.selectAll("text")
 				.data(axisData)
 			.enter().append("text")
-				.attr("x", function(d) {return d * scaleFactor})
+				.attr("x", function(d) {return x(d)})
 				.attr("y", -tickHeight - tickGap)
 				.text(function(d) {return d + "%"});
 	</script>
