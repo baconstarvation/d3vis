@@ -102,8 +102,8 @@
 			.enter().append("rect")
 				.attr("x", 0)
 				.attr("y", function(d){ return d.position * barSpacing })
-				.attr("width", function(d) { return d.value });
-				.attr("height", barHeight)
+				.attr("width", function(d) { return d.value })
+				.attr("height", barHeight);
 
 		var barLabelGroup = svg.append("g")
 				.attr("transform", translateText)
