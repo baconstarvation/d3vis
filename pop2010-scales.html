@@ -71,8 +71,6 @@
 					{age:"0-4", value:9.3, position:16}
 				];
 
-		var axisData = [0, 2.5, 5.0, 7.5];
-
 		var margin = {top: 30, right: 0, bottom: 0, left: 100},
 			width = 500 - margin.left - margin.right,
 			height = 400 - margin.top - margin.bottom;
@@ -88,7 +86,9 @@
 				.range([0, width]);
 
 		var xAxis = d3.svg.axis()
-				.scale(x);
+				.scale(x)
+				.orient(top)
+				.ticks(5);
 
 		var body = d3.select("body");
 
@@ -138,27 +138,6 @@
 				.attr("x", -10)
 				.attr("y", function(d) { return d.position * barSpacing + barHeight*(2/3)})
 				.text(function(d) {return d.age});
-
-		var axisTickGroup = svg.append("g")
-				.attr("stroke", "black");
-
-		axisTickGroup.selectAll("line")
-				.data(axisData)
-			.enter().append("line")
-				.attr("x1", function(d) {return x(d)})
-				.attr("x2", function(d) {return x(d)})			
-				.attr("y1", 0)
-				.attr("y2", -tickHeight);
-
-		var axisLabelGroup = svg.append("g")
-				.attr("class", "axis-label");
-
-		axisLabelGroup.selectAll("text")
-				.data(axisData)
-			.enter().append("text")
-				.attr("x", function(d) {return x(d)})
-				.attr("y", -tickHeight - tickGap)
-				.text(function(d) {return d + "%"});
 	</script>
 </body>
 </html>
