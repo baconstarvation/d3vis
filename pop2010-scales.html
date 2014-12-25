@@ -76,6 +76,9 @@
 				.domain([0, d3.max(popData, function(d) {return d.value})])
 				.range([0, width]);
 
+		var xAxis = d3.svg.axis()
+				.scale(x);
+
 		var body = d3.select("body");
 
 		body.append("h2")
@@ -101,7 +104,8 @@
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		var barGroup = svg.append("g")
-				.attr("class", "bar");
+				.attr("class", "bar")
+				.call(xAxis);
 
 		barGroup.selectAll("rect")
 				.data(popData)
