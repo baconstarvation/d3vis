@@ -35,19 +35,6 @@
 								text-anchor: middle;
 								font-size: 13px;
 				}
-				.x.axis line {
-								fill: none;
-								stroke: #000;
-				}
-				.x.axis text {
-								font-size: 13px;
-				}
-				.axis path {
-								display:none;
-				}
-				.y.axis line {
-								display:none;
-				}
 </style>
 </head>
 <body>
@@ -125,8 +112,8 @@
 				.data(popData)
 			.enter().append("rect")
 				.attr("x", 0)
-				.attr("y", function(d) {return y(d.age)})
-				.attr(("width", function(d) {return x(d.value)})
+				.attr("y", function(d){ return y(d.age) })
+				.attr("width", function(d) { return d.value })
 				.attr("height", y.rangeBand());
 
 		svg.append("g")
