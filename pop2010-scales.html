@@ -105,7 +105,6 @@
 
 		var barGroup = svg.append("g")
 				.attr("class", "bar")
-				.call(xAxis);
 
 		barGroup.selectAll("rect")
 				.data(popData)
@@ -114,6 +113,9 @@
 				.attr("y", function(d) { return d.position * barSpacing})
 				.attr("width", function(d) {return x(d.value)})
 				.attr("height", barHeight);
+
+		svg.append("g")
+				.call(xAxis);
 
 		var barLabelGroup = svg.append("g")
 				.attr("class", "bar-label");
