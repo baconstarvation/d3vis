@@ -83,7 +83,7 @@
 
 		var y = d3.scale.ordinal()
 				.domain(popData.map(function(element) {return element.age}))
-				.range([0, barSpacing, 2*barSpacing, 3*barSpacing, 4*barSpacing, 5*barSpacing, 6*barSpacing, 7*barSpacing, 8*barSpacing, 9*barSpacing, 10*barSpacing, 11*barSpacing, 12*barSpacing, 13*barSpacing, 14*barSpacing, 15*barSpacing, 16*barSpacing]);
+				.rangeBands([0, height]);
 
 		var xAxis = d3.svg.axis()
 				.scale(x)
