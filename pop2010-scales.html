@@ -64,9 +64,9 @@
 
 		var margin = {top: 30, right: 0, bottom: 0, left: 100},
 			width = 500 - margin.left - margin.right,
-			height = 230 - margin.top - margin.bottom;
+			height = 400 - margin.top - margin.bottom;
 
-		var barHeight = 45,
+		var barHeight = 20,
 			barGap = 5,
 			tickHeight = 10,
 			tickGap = 5,
@@ -100,12 +100,6 @@
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		var svg = chartDiv.append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom)
-			.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 		var barGroup = svg.append("g")
 				.attr("class", "bar");
 
@@ -114,7 +108,7 @@
 			.enter().append("rect")
 				.attr("x", 0)
 				.attr("y", function(d) { return d.position * barSpacing})
-				.attr(("width", function(d) {return x(d.value)})
+				.attr("width", function(d) {return x(d.value)})
 				.attr("height", barHeight);
 
 		var barLabelGroup = svg.append("g")
