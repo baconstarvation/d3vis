@@ -63,7 +63,7 @@
 		var axisData = [0, 2.5, 5.0, 7.5];
 
 		var margin = {top: 30, right: 0, bottom: 0, left: 100},
-			width = 500 - margin.left - margin.right;
+			width = 500 - margin.left - margin.right,
 			height = 230 - margin.top - margin.bottom;
 
 		var barHeight = 45,
@@ -94,7 +94,7 @@
 		body.append("div")
 				.attr("class", "clearfix");
 
-		var svg = body.append("svg");
+		var svg = body.append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
 			.append("g")
