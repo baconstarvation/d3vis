@@ -81,6 +81,10 @@
 				.domain([0, d3.max(popData, function(d) {return d.value})])
 				.range([0, width]);
 
+		var y = d3.scale.ordinal()
+				.domain(popData.map(function(element) {return element.age}))
+				.range([0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400]);
+
 		var xAxis = d3.svg.axis()
 				.scale(x)
 				.orient("top")
@@ -124,16 +128,6 @@
 		svg.append("g")
 				.call(xAxis)
 				.attr("class", "axis");
-
-		var barLabelGroup = svg.append("g")
-				.attr("class", "bar-label");
-
-		barLabelGroup.selectAll("text")
-				.data(popData)
-			.enter().append("text")
-				.attr("x", -10)
-				.attr("y", function(d) { return d.position * barSpacing + barHeight*(2/3)})
-				.text(function(d) {return d.age});
 	</script>
 </body>
 </html>
