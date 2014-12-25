@@ -83,7 +83,7 @@
 
 		var y = d3.scale.ordinal()
 				.domain(popData.map(function(element) {return element.age}))
-				.range([0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400]);
+				.range([0, barSpacing, 2*barSpacing, 3*barSpacing, 4*barSpacing, 5*barSpacing, 6*barSpacing, 7*barSpacing, 8*barSpacing, 9*barSpacing, 10*barSpacing, 11*barSpacing, 12*barSpacing, 13*barSpacing, 14*barSpacing, 15*barSpacing, 16*barSpacing]);
 
 		var xAxis = d3.svg.axis()
 				.scale(x)
@@ -114,14 +114,12 @@
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		var barGroup = svg.append("g")
-				.attr("class", "bar")
-
-		barGroup.selectAll("rect")
+		svg.selectAll("rect")
 				.data(popData)
 			.enter().append("rect")
+				.attr("class", "bar")
 				.attr("x", 0)
-				.attr("y", function(d) { return d.position * barSpacing})
+				.attr("y", function(d) { return y(d.age)})
 				.attr("width", function(d) {return x(d.value)})
 				.attr("height", barHeight);
 
