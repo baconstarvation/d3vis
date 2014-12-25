@@ -10,16 +10,12 @@
 								width: 500px;
 								height: 500px;
 				}
-
 				.axis line {
 								fill: none;
 								stroke: #000;
 				}
 				.axis path {
 								display: none;
-				}
-				.axis text {
-								font-size: 13px;
 				}
 				.top-label {
 								font-size: 13px;
@@ -70,53 +66,40 @@
 					{age:"5-9", value:8.8, position:15},
 					{age:"0-4", value:9.3, position:16}
 				];
-
+		var axisData = [0, 2.5, 5.0, 7.5];
 		var margin = {top: 30, right: 0, bottom: 0, left: 100},
 			width = 500 - margin.left - margin.right,
 			height = 400 - margin.top - margin.bottom;
-
 		var barHeight = 20,
 			barGap = 5,
 			tickHeight = 10,
 			tickGap = 5,
 			barSpacing = barHeight + barGap;
-
 		var x = d3.scale.linear()
 				.domain([0, d3.max(popData, function(d) {return d.value})])
 				.range([0, width]);
-
 		var xAxis = d3.svg.axis()
-				.scale(x)
-				.orient(top)
-				.ticks(5, "%");
-
+				.scale(x);
 		var body = d3.select("body");
-
 		body.append("h2")
 				.text("Age distribution of the world, 2010");
-
 		body.append("div")
 				.attr("class", "top-label age-label")
 			.append("p")
 				.text("age group");
-
 		body.append("div")
 				.attr("class", "top-label")
 			.append("p")
 				.text("portion of the population");
-
 		body.append("div")
 				.attr("class", "clearfix");
-
 		var svg = body.append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
 			.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 		var barGroup = svg.append("g")
 				.attr("class", "bar")
-
 		barGroup.selectAll("rect")
 				.data(popData)
 			.enter().append("rect")
@@ -124,20 +107,34 @@
 				.attr("y", function(d) { return d.position * barSpacing})
 				.attr("width", function(d) {return x(d.value)})
 				.attr("height", barHeight);
-
 		svg.append("g")
 				.call(xAxis)
 				.attr("class", "axis");
-
 		var barLabelGroup = svg.append("g")
 				.attr("class", "bar-label");
-
 		barLabelGroup.selectAll("text")
 				.data(popData)
 			.enter().append("text")
 				.attr("x", -10)
 				.attr("y", function(d) { return d.position * barSpacing + barHeight*(2/3)})
 				.text(function(d) {return d.age});
+		var axisTickGroup = svg.append("g")
+				.attr("stroke", "black");
+		axisTickGroup.selectAll("line")
+				.data(axisData)
+			.enter().append("line")
+				.attr("x1", function(d) {return x(d)})
+				.attr("x2", function(d) {return x(d)})			
+				.attr("y1", 0)
+				.attr("y2", -tickHeight);
+		var axisLabelGroup = svg.append("g")
+				.attr("class", "axis-label");
+		axisLabelGroup.selectAll("text")
+				.data(axisData)
+			.enter().append("text")
+				.attr("x", function(d) {return x(d)})
+				.attr("y", -tickHeight - tickGap)
+				.text(function(d) {return d + "%"});
 	</script>
 </body>
 </html>
