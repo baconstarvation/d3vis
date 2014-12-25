@@ -120,8 +120,8 @@
 				.attr("class", "bar")
 				.attr("x", 0)
 				.attr("y", function(d) { return y(d.age)})
-				.attr("width", function(d) {return x(d.value)})
-				.attr("height", barHeight);
+				.attr("width", function(d) { return x(d.value); })
+				.attr("height", y.rangeBand());
 
 		svg.append("g")
 				.call(xAxis)
