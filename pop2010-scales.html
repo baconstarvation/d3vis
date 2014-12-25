@@ -60,21 +60,21 @@
 					{age:"0-4", value:9.3, position:16}
 				];
 
-		var axisData = [0, 2.5, 5.0, 7.5];	
-		var width = 400,
-			leftMargin = 100,
-			topMargin = 30,
-			barHeight = 20,
+		var axisData = [0, 2.5, 5.0, 7.5];
+
+		var margin = {top: 30, right: 0, bottom: 0, left: 100},
+			width = 500 - margin.left - margin.right;
+			height = 230 - margin.top - margin.bottom;
+
+		var barHeight = 45,
 			barGap = 5,
-			barSpacing = barHeight + barGap,
 			tickHeight = 10,
 			tickGap = 5,
-			translateText = "translate(" + leftMargin + "," + topMargin + ")";
+			barSpacing = barHeight + barGap;
 
 		var x = d3.scale.linear()
-				.domain([0, d3.max(popData, function(d)
-				{return d.value})])
-					.range([0, width]);
+				.domain([0, d3.max(popData, function(d) {return d.value})])
+				.range([0, width]);
 
 		var body = d3.select("body");
 
@@ -95,9 +95,18 @@
 				.attr("class", "clearfix");
 
 		var svg = body.append("svg");
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		var svg = chartDiv.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		var barGroup = svg.append("g")
-				.attr("transform", translateText)
 				.attr("class", "bar");
 
 		barGroup.selectAll("rect")
@@ -108,8 +117,17 @@
 				.attr(("width", function(d) {return x(d.value)})
 				.attr("height", barHeight);
 
+		var barLabelGroup = svg.append("g")
+				.attr("class", "bar-label");
+
+		barLabelGroup.selectAll("text")
+				.data(popData)
+			.enter().append("text")
+				.attr("x", -10)
+				.attr("y", function(d) { return d.position * barSpacing + barHeight*(2/3)})
+				.text(function(d) {return d.age});
+
 		var axisTickGroup = svg.append("g")
-				.attr("transform", translateText)
 				.attr("stroke", "black");
 
 		axisTickGroup.selectAll("line")
@@ -121,7 +139,6 @@
 				.attr("y2", -tickHeight);
 
 		var axisLabelGroup = svg.append("g")
-				.attr("transform", translateText)
 				.attr("class", "axis-label");
 
 		axisLabelGroup.selectAll("text")
@@ -129,7 +146,7 @@
 			.enter().append("text")
 				.attr("x", function(d) {return x(d)})
 				.attr("y", -tickHeight - tickGap)
-				.text(function(d) {return d + "%"});
+				.text(function(d,i) {return d + "%"});
 	</script>
 </body>
 </html>
