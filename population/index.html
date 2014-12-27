@@ -5,8 +5,12 @@
 <script src="http://d3js.org/d3.v3.min.js">
 </script>
 <script>
+		var popData;
+
 		d3.csv("popData2010.csv", function(error, data) {
-				console.log(data);
+				popData = data;
 		});
+
+		console.log(popData);
 </script>
 </body>
