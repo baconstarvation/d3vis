@@ -86,6 +86,9 @@
 				.scale(y)
 				.orient("left");
 
+		body.append("h2")
+				.text("Age distribution of the world, " + year);
+
 		var buttons = body.append("div")
 				.attr("class", "buttons-container")
 				.selectAll("div").data(buttonYears)
@@ -97,9 +100,6 @@
 						else
 							return "button";
 				});
-
-		body.append("h2")
-				.text("Age distribution of the world, " + year);
 
 		body.append("div")
 				.attr("class", "clearfix")
@@ -159,7 +159,7 @@
 
 						bars.data(popData)
 							.attr("width", function(d) { return x(d.value)
-						});
+							});
 			});
 		});
 	</script>
