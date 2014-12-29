@@ -91,24 +91,22 @@
 		}
 
 		function update(updateYear) {
-						d3.select(".selected")
-							.classed("selected", false);
 
-						d3.select(this)
-							.classed("selected", true);
+				d3.select(".selected")
+					.classed("selected", false);
 
-						year = d;
+				buttons
+					.filter(function(d) { return d == updateYear; })
+					.classed("selected", true);	
 
-						popData = data.filter(function(element) {return element.year == year});
+				popData = data.filter(function(element) {return element.year == updateYear});
 
-						bars.data(popData, keys)
-							.transition()
-							.duration(500)
-							.attr("width", function(d) { return x(d.value)
-							});
+				bars.data(popData, keys)
+					.transition()
+					.duration(500)
+					.attr("width", function(d) { return x(d.value)
+					});
 		};
-
-
 
 		body.append("h2")
 				.text("Age distribution of the world, " + year);
