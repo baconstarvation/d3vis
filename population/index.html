@@ -86,6 +86,10 @@
 				.scale(y)
 				.orient("left");
 
+		function keys(d) {
+				return d.age;
+		}
+
 		body.append("h2")
 				.text("Age distribution of the world, " + year);
 
@@ -130,7 +134,7 @@
 					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 			var bars = svg.selectAll("rect")
-					.data(popData)
+					.data(popData, keys)
 				.enter().append("rect")
 					.attr("class", "bar")
 					.attr("x", 0)
@@ -157,7 +161,7 @@
 
 						popData = data.filter(function(element) {return element.year == year});
 
-						bars.data(popData)
+						bars.data(popData, keys)
 							.transition()
 							.duration(500)
 							.attr("width", function(d) { return x(d.value)
