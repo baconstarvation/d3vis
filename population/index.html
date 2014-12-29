@@ -129,7 +129,7 @@
 				.append("g")
 					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			svg.selectAll("rect")
+			var bars = svg.selectAll("rect")
 					.data(popData)
 				.enter().append("rect")
 					.attr("class", "bar")
@@ -147,7 +147,6 @@
 					.attr("class", "y axis");
 
 			buttons.on("click", function(d) {
-
 						d3.select(".selected")
 							.classed("selected", false);
 
@@ -155,6 +154,12 @@
 							.classed("selected", true);
 
 						year = d;
+
+						popData = data.filter(function(element) {return element.year == year});
+
+						bars.data(popData)
+							.attr("width", function(d) { return x(d.value)
+						});
 			});
 		});
 	</script>
