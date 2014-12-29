@@ -121,6 +121,7 @@
 
 		body.append("div")
 				.attr("class", "clearfix")
+
 		body.append("div")
 				.attr("class", "top-label age-label")
 			.append("p")
@@ -135,6 +136,7 @@
 				.attr("class", "clearfix");
 
 		d3.csv("allData.csv", function(error, data) {
+
 			var popData = data.filter(function(element) {return element.year == year});
 
 			x.domain([0, d3.max(data, function(d) { return d.value; })]);
@@ -166,12 +168,24 @@
 
 			buttons.on("click", function(d) {
 					update(d);
+					clearInterval(playInterval);
 			});
 
+			var playInterval;
+
 			playAll.on("click", function() {
-					for (var i = 0; i < buttonYears.length; i++) {
-							update(buttonYears[i]);
-					}
+
+					var i = 0;
+
+					playInterval = setInterval(function() {
+						update(buttonYears[i]);
+
+						i++;
+
+						if(i > buttonYears.length - 1){
+								clearInterval(playInterval);
+						}
+					}, 700);
 			});
 
 			function update(updateYear) {
