@@ -48,6 +48,10 @@
 				.button {
 								float: left;
 								margin-left: 10px;
+								font-weight: lighter;
+				}
+				.selected {
+							font-weight: bold;
 				}
 </style>
 </head>
@@ -56,7 +60,7 @@
 	<script>
 		var buttonYears = [1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030, 2035, 2040, 2045, 2050];
 
-		var year = 2050;
+		var year = 2010;
 
 		var margin = {top: 30, right: 0, bottom: 0, left: 100},
 			width = 500 - margin.left - margin.right,
@@ -87,8 +91,15 @@
 				.selectAll("div").data(buttonYears)
 			.enter().append("div")
 				.text(function(d) { return d; })
-				.attr("class", "button")
+				.attr("class", function(d) {
+						if(d == year)
+							return "button selected";
+						else
+							return "button";
+				});
 
+		body.append("div")
+				.attr("class", "clearfix")
 		body.append("div")
 				.attr("class", "top-label age-label")
 			.append("p")
