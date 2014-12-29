@@ -90,6 +90,26 @@
 				return d.age;
 		}
 
+		function update(updateYear) {
+						d3.select(".selected")
+							.classed("selected", false);
+
+						d3.select(this)
+							.classed("selected", true);
+
+						year = d;
+
+						popData = data.filter(function(element) {return element.year == year});
+
+						bars.data(popData, keys)
+							.transition()
+							.duration(500)
+							.attr("width", function(d) { return x(d.value)
+							});
+		};
+
+
+
 		body.append("h2")
 				.text("Age distribution of the world, " + year);
 
