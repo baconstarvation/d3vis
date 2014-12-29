@@ -49,6 +49,7 @@
 								float: left;
 								margin-left: 10px;
 								font-weight: lighter;
+								cursor: pointer;
 				}
 				.selected {
 							font-weight: bold;
@@ -98,6 +99,9 @@
 							return "button";
 				})
 				.on("click", function(d) {
+						d3.select(".selected")
+							.classed("selected", false);
+
 						d3.select(this)
 							.classed("selected", true);
 				});
