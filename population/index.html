@@ -96,6 +96,10 @@
 							return "button selected";
 						else
 							return "button";
+				})
+				.on("click", function(d) {
+						d3.select(this)
+							.classed("selected", true);
 				});
 
 		body.append("div")
