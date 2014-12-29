@@ -54,6 +54,16 @@
 				.selected {
 							font-weight: bold;
 				}
+				.play-button {
+							margin-left: 10px;
+							margin-bottom: 15px;
+							font-style: italic;
+							cursor: pointer;
+							color: grey;
+				}
+				.play-button:hover {
+							color: black;
+				}
 </style>
 </head>
 <body>
@@ -90,26 +100,12 @@
 				return d.age;
 		}
 
-		function update(updateYear) {
-
-				d3.select(".selected")
-					.classed("selected", false);
-
-				buttons
-					.filter(function(d) { return d == updateYear; })
-					.classed("selected", true);	
-
-				popData = data.filter(function(element) {return element.year == updateYear});
-
-				bars.data(popData, keys)
-					.transition()
-					.duration(500)
-					.attr("width", function(d) { return x(d.value)
-					});
-		};
-
 		body.append("h2")
 				.text("Age distribution of the world, " + year);
+
+		var playAll = body.append("div")
+				.attr("class", "play-button")
+				.text("PLAY ALL YEARS");
 
 		var buttons = body.append("div")
 				.attr("class", "buttons-container")
@@ -169,7 +165,32 @@
 					.attr("class", "y axis");
 
 			buttons.on("click", function(d) {
+					update(d);
 			});
+
+			playAll.on("click", function() {
+					for (var i = 0; i < buttonYears.length; i++) {
+							update(buttonYears[i]);
+					}
+			});
+
+			function update(updateYear) {
+
+					d3.select(".selected")
+						.classed("selected", false);
+
+					buttons
+						.filter(function(d) { return d == updateYear; })
+						.classed("selected", true);	
+
+					popData = data.filter(function(element) {return element.year == updateYear});
+
+					bars.data(popData, keys)
+						.transition()
+						.duration(500)
+						.attr("width", function(d) { return x(d.value)
+						});
+			};
 		});
 	</script>
 </body>
