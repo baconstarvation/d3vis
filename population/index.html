@@ -158,6 +158,8 @@
 						popData = data.filter(function(element) {return element.year == year});
 
 						bars.data(popData)
+							.transition()
+							.duration(500)
 							.attr("width", function(d) { return x(d.value)
 							});
 			});
