@@ -41,6 +41,14 @@
 				.bar {
 								fill: DarkSlateBlue;
 				}
+				.buttons-container {
+								width: 520px;
+								margin-bottom: 15px;
+				}
+				.button {
+								float: left;
+								margin-left: 10px;
+				}
 </style>
 </head>
 <body>
@@ -78,7 +86,8 @@
 				.attr("class", "buttons-container")
 				.selectAll("div").data(buttonYears)
 			.enter().append("div")
-				.text(function(d) { return d; });
+				.text(function(d) { return d; })
+				.attr("class", "button")
 
 		body.append("div")
 				.attr("class", "top-label age-label")
